@@ -4,6 +4,7 @@
 module TrainingCommandCenter
 using ..BehavioralTrainingRegiment
 using Printf, Dates
+using JLD2
 
 # Global training state
 const TRAINING_STATE = Dict{Symbol,Any}()
@@ -20,6 +21,39 @@ function get_trainer()
         init_training_system()
     end
     return TRAINING_STATE[:trainer]
+end
+
+# Model persistence commands
+function cmd_save_model(args)
+    length(args) < 1 && error("Usage: save <filename>")
+    filename = args[1]
+    
+    # Ensure the models directory exists within the project
+    models_dir = joinpath(pwd(), "models")
+    mkpath(models_dir)
+    filepath = joinpath(models_dir, filename)
+    
+    println("💾 Saving model to $filepath...")
+    trainer = get_trainer()
+    JLD2.save_object(filepath, trainer)
+    println("✅ Model saved successfully.")
+end
+
+function cmd_load_model(args)
+    length(args) < 1 && error("Usage: load <filename>")
+    filename = args[1]
+    filepath = joinpath(pwd(), "models", filename)
+    
+    if !isfile(filepath)
+        println("❌ Model file not found: $filepath")
+        return
+    end
+    
+    println("🔄 Loading model from $filepath...")
+    trainer = JLD2.load_object(filepath)
+    TRAINING_STATE[:trainer] = trainer
+    println("✅ Model loaded successfully.")
+    cmd_training_stats([]) # Display stats of the loaded model
 end
 
 # Command implementations
@@ -200,7 +234,9 @@ const TRAINING_COMMANDS = Dict(
     "stats" => cmd_training_stats,
     "session" => cmd_session_info,
     "batch" => cmd_batch_train,
-    "init_training" => args -> init_training_system()
+    "init_training" => args -> init_training_system(),
+    "save" => cmd_save_model,
+    "load" => cmd_load_model
 )
 
 function handle_training_command(cmd::String, args::Vector{SubString{String}})
@@ -224,6 +260,8 @@ function extend_command_center()
     println("  session <user>                    - View user session info")
     println("  batch <n>                         - Run batch training")
     println("  init_training                     - Initialize training system")
+    println("  save <filename>                   - Save the current training model")
+    println("  load <filename>                   - Load a training model from file")
 end
 
 end # module

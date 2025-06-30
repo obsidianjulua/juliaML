@@ -1,0 +1,26 @@
+{
+  "experiment_name": "BehavioralIntentClassification",
+  "version": "1.0.0",
+  "data_paths": {
+    "training": "data/training_set.csv",
+    "validation": "data/validation_set.csv",
+    "test": "data/test_set.csv"
+  },
+  "model_parameters": {
+    "learning_rate": 0.01,
+    "epochs": 100,
+    "batch_size": 32,
+    "optimizer": "Adam"
+  },
+  "features": [
+    "feature_1",
+    "feature_2",
+    "feature_3",
+    "user_profile_vector"
+  ],
+  "output_schema": {
+    "intent": "string",
+    "confidence": "float",
+    "timestamp": "datetime"
+  }
+}

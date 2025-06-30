@@ -222,14 +222,6 @@ macro profile(ex)
     end
 end
 
-macro allocations(ex)
-    quote
-        --track-allocation=user
-        $(esc(ex))
-        Profile.print_flat()
-    end
-end
-
 # Quick data inspection
 function inspect(x)
     println("Value: $x")
