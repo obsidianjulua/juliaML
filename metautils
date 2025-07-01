@@ -1,0 +1,57 @@
+This Julia file, metamorphic_utils.jl, serves a dual purpose for a "Metamorphic ML" framework, which appears to be a
+  system for dynamically modifying trained neural network models.
+
+  The file is split into two main sections:
+   1. A collection of utility functions intended to be used with the framework.
+   2. A complete, self-contained Pluto notebook template that provides an interactive workspace for experimenting with
+      this framework.
+
+
+  1. Utility Functions Summary
+
+  This section provides helper functions to create, debug, and analyze "metamorphic" models.
+
+
+   * quick_morph(layer): A shortcut to wrap a standard neural network layer (e.g., Dense) into a MetaMorphicLayer,
+     making it modifiable.
+   * inject_debug(layer): Injects a debugging hook into a layer that prints diagnostic information (like input size and
+     context) whenever the layer is processed.
+   * inject_visualizer(layer): Injects a hook that generates a heatmap of the layer's output every few iterations,
+     allowing for real-time visualization of the model's internal state.
+   * compare_models(...): A function to compare the outputs of an original model and its metamorphically modified
+     version, calculating the difference and similarity between them.
+   * @timed_inject: A macro that measures the execution time of an injection operation, records it to a global
+     METAMORPHIC_STATS dictionary, and logs the time taken.
+
+  2. Pluto Notebook Template Summary
+
+
+  This section is a fully functional, interactive Pluto notebook designed for hands-on experimentation with the
+  metamorphic ML framework. It allows a user to load a model, modify it using natural language, and immediately see
+  the impact on its behavior and performance.
+
+  How it's Used:
+
+
+  The notebook provides a rich user interface where a user can:
+   1. Select a Model: Choose a base neural network architecture (e.g., a Transformer or a simple Dense chain).
+   2. Describe an Injection: Write a command in a text box (e.g., "optimize attention and boost performance").
+   3. Select Modification Types: Choose from a list of "break points" (e.g., Attention Redirect, Logic Bypass) that
+      specify how the model should be modified.
+   4. Apply Injection: Click a button to trigger the constructivist_training_session!, which modifies the model based on
+      the inputs.
+   5. Analyze Results: The notebook automatically updates to show the results through several panels.
+
+  Key Features (Notebook Cells):
+
+
+   * Injection Interface: Provides the UI (text fields, checkboxes, button) for the user to define and apply
+     modifications.
+   * Visualization Panel: Generates a 2x2 plot layout comparing the original and modified models. It shows heatmaps of
+     their outputs, the difference between them, and key metrics like similarity and magnitude change.
+   * Performance Monitor: Benchmarks the inference time and parameter count of both models, presenting the comparison
+     in a clear HTML table that highlights performance gains or losses.
+   * Experiment Log: Automatically keeps a history of every injection experiment performed in the session, logging the
+     user's inputs and the resulting performance ratio.
+   * Advanced Controls: Provides a terminal-like output summarizing the internal state of the modified model, such as
+     the number of active modifications per layer.
