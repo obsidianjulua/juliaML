@@ -246,7 +246,7 @@ volumes:
 FROM julia:1.9
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+RUN sudo pacman -Syu && sudo pacman -S \
     build-essential \
     git \
     wget \
