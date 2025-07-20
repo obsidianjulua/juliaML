@@ -1,6 +1,8 @@
 # MLJ Starting Models for Behavioral Intent Classification
 # Five diverse models with varying strengths for constructivist learning
 
+module MLJStarter
+
 using MLJ
 using MLJBase
 using DataFrames
@@ -340,3 +342,6 @@ end
 println("🎯 Five MLJ Starting Models Ready")
 println("Use: demo_mlj_models() to test all models")
 println("Available models: $(keys(create_starting_models()))")
+
+end # Starting....
+

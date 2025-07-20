@@ -39,7 +39,7 @@ try
     @eval using InteractiveUtils
     
     # Custom metamorphic utilities
-    include(joinpath(homedir(), ".julia", "config", "metamorphic_utils.jl"))
+    include(joinpath(homedir(), ".Metamorphic_Utils.jl.jl"))
     
     println("✅ MetaMorphic environment ready!")
     
@@ -81,7 +81,7 @@ end
 
 # =============================================================================
 # METAMORPHIC_UTILS.JL - Custom utilities
-# Place this in ~/.julia/config/metamorphic_utils.jl  
+# Place this in ~/.julia/config/Metamorphic_Utils.jl
 # =============================================================================
 
 # Quick metamorphic layer creation

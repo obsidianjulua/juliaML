@@ -1,7 +1,13 @@
 # Obsidian-Julia Data Pipeline
 # Creates .md files for Obsidian and .jl drop files for Julia
 
+module O
+
 using Dates, JSON3, Markdown
+
+export setup_obsidian_folders, create_training_session_md, create_profile_md, create_julia_drop
+export create_obsidian_templates, export_to_obsidian, setup_obsidian_folders
+export generate_recommendations, setup_obsidian_integration
 
 # Configuration
 const OBSIDIAN_VAULT = "/home/grim/Vaults/queen-julia"
@@ -336,3 +342,4 @@ function setup_obsidian_integration(vault_path::String)
     println("📝 Use export_to_obsidian(trainer) to export data")
     println("👀 Use watch_julia_drops() to auto-import")
 end
+end # model_performance
