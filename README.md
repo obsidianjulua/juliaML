@@ -44,10 +44,7 @@ This project goes beyond pattern recognition:
 ---
 
 ## 🚦 Quick Start
-
-```julia
-using MachinePsychology
-
+Pick any of the starting files.
 # Launch the adaptive training REPL
 start_training_command_center()
 
