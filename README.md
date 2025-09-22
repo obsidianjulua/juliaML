@@ -1,4 +1,4 @@
-# Machine Psychology Framework
+# Machine Psychology Framework by Jonathon Mohr
 
 **Adaptive, Self-Healing, Constructivist Machine Intelligence in Julia**
 
